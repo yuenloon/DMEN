@@ -17,7 +17,7 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
     // Add click event to show preview
     listItem.addEventListener('click', function() {
         const filePreview = document.getElementById('filePreview');
-        filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="500px"></iframe>`;
+        filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="100%"></iframe>`;
     });
     
     // Add context menu event
@@ -57,7 +57,7 @@ window.addEventListener('load', function() {
         // Add click event to show preview
         listItem.addEventListener('click', function() {
             const filePreview = document.getElementById('filePreview');
-            filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="500px"></iframe>`;
+            filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="100%"></iframe>`;
         });
         
         // Add context menu event
@@ -73,6 +73,19 @@ window.addEventListener('load', function() {
 // Context menu functionality
 function showContextMenu(event, listItem) {
     const contextMenu = document.getElementById('contextMenu');
+    
+    // Remove any existing backdrop
+    const existingBackdrop = document.querySelector('.context-menu-backdrop');
+    if (existingBackdrop) {
+        existingBackdrop.remove();
+    }
+    
+    // Create backdrop
+    const backdrop = document.createElement('div');
+    backdrop.classList.add('context-menu-backdrop');
+    document.body.appendChild(backdrop);
+    
+    // Position and show context menu
     contextMenu.style.display = 'block';
     contextMenu.style.left = `${event.pageX}px`;
     contextMenu.style.top = `${event.pageY}px`;
@@ -81,6 +94,7 @@ function showContextMenu(event, listItem) {
     document.getElementById('openLink').onclick = function() {
         window.open(listItem.dataset.link, '_blank');
         contextMenu.style.display = 'none';
+        backdrop.remove();
     };
     
     // Remove item
@@ -96,10 +110,12 @@ function showContextMenu(event, listItem) {
         localStorage.setItem('files', JSON.stringify(updatedFiles));
         
         contextMenu.style.display = 'none';
+        backdrop.remove();
     };
     
-    // Hide context menu when clicking elsewhere
-    document.addEventListener('click', function() {
+    // Hide context menu and backdrop when clicking elsewhere
+    backdrop.addEventListener('click', function() {
         contextMenu.style.display = 'none';
-    }, { once: true });
+        backdrop.remove();
+    });
 }
