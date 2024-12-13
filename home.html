@@ -135,31 +135,7 @@
 
             fileList.appendChild(listItem);
 
-            // Save to localStorage
-            const files = JSON.parse(localStorage.getItem('files')) || [];
-            files.push({ date, subject, chapter, remarks, fileLink });
-            localStorage.setItem('files', JSON.stringify(files));
-
             document.getElementById('uploadForm').reset();
-        });
-
-        // Load from localStorage
-        window.addEventListener('load', function() {
-            const files = JSON.parse(localStorage.getItem('files')) || [];
-            const fileList = document.getElementById('fileList');
-
-            files.forEach(file => {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${file.date} - ${file.subject} - ${file.chapter} - ${file.remarks}`;
-                listItem.dataset.link = file.fileLink;
-
-                listItem.addEventListener('click', function() {
-                    const filePreview = document.getElementById('filePreview');
-                    filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="400px"></iframe>`;
-                });
-
-                fileList.appendChild(listItem);
-            });
         });
     </script>
 </body>
