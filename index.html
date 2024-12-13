@@ -15,11 +15,22 @@
             padding: 0;
         }
         .container {
-            max-width: 600px;
+            max-width: 1000px;
             margin: 50px auto;
             padding: 20px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+        }
+        .form-container {
+            width: 20%;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-right: 1px solid #ccc;
+        }
+        .list-container {
+            width: 80%;
+            padding: 20px;
         }
         h1 {
             text-align: center;
@@ -58,57 +69,42 @@
         li:hover {
             background-color: #f0f0f0;
         }
-        .preview {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #fff;
-        }
     </style>
 </head>
 <body class="bg-gray-100 font-roboto">
-    <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold mb-4">DMEN studies file</h1>
-        <div class="flex flex-col md:flex-row">
-            <div class="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-lg mb-4 md:mb-0">
-                <form id="uploadForm">
-                    <div class="mb-4">
-                        <label for="date" class="block text-gray-700 font-bold mb-2">Select Date:</label>
-                        <input type="date" id="date" name="date" class="w-full p-2 border border-gray-300 rounded-lg">
-                    </div>
-                    <div class="mb-4">
-                        <label for="subjects" class="block text-gray-700 font-bold mb-2">Subject:</label>
-                        <input type="text" id="subject" name="subject" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter subject">
-                    </div>
-                    <div class="mb-4">
-                        <label for="chapter" class="block text-gray-700 font-bold mb-2">Chapter:</label>
-                        <input type="text" id="chapter" name="chapter" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter chapter">
-                    </div>
-                    <div class="mb-4">
-                        <label for="remarks" class="block text-gray-700 font-bold mb-2">Remarks:</label>
-                        <input type="text" id="remarks" name="remarks" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter remarks">
-                    </div>
-                    <div class="mb-4">
-                        <label for="fileLink" class="block text-gray-700 font-bold mb-2">File Link (Google Drive/Dropbox):</label>
-                        <input type="text" id="fileLink" name="fileLink" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter file link">
-                    </div>
-                    <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700">Submit</button>
-                </form>
-            </div>
-            <div class="w-full md:w-2/3 bg-white p-6 rounded-lg shadow-lg">
-                <h2 class="text-2xl font-bold mb-4">List of Files</h2>
-                <div class="flex flex-col md:flex-row">
-                    <div class="w-full md:w-1/3">
-                        <h3 class="text-xl font-bold mb-2">Titles</h3>
-                        <ul id="fileList" class="list-disc pl-5"></ul>
-                    </div>
-                    <div class="w-full md:w-2/3">
-                        <h3 class="text-xl font-bold mb-2">File Preview</h3>
-                        <div id="filePreview" class="border border-gray-300 p-4 rounded-lg">
-                            <p>Select a document to view</p>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="form-container">
+            <h1 class="text-3xl font-bold mb-4">DMEN studies file</h1>
+            <form id="uploadForm">
+                <div class="mb-4">
+                    <label for="date" class="block text-gray-700 font-bold mb-2">Select Date:</label>
+                    <input type="date" id="date" name="date" class="w-full p-2 border border-gray-300 rounded-lg">
+                </div>
+                <div class="mb-4">
+                    <label for="subjects" class="block text-gray-700 font-bold mb-2">Subject:</label>
+                    <input type="text" id="subject" name="subject" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter subject">
+                </div>
+                <div class="mb-4">
+                    <label for="chapter" class="block text-gray-700 font-bold mb-2">Chapter:</label>
+                    <input type="text" id="chapter" name="chapter" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter chapter">
+                </div>
+                <div class="mb-4">
+                    <label for="remarks" class="block text-gray-700 font-bold mb-2">Remarks:</label>
+                    <input type="text" id="remarks" name="remarks" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter remarks">
+                </div>
+                <div class="mb-4">
+                    <label for="fileLink" class="block text-gray-700 font-bold mb-2">File Link (Google Drive/Dropbox):</label>
+                    <input type="text" id="fileLink" name="fileLink" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter file link">
+                </div>
+                <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700">Submit</button>
+            </form>
+        </div>
+        <div class="list-container">
+            <h2 class="text-2xl font-bold mb-4">List of Files</h2>
+            <div class="flex flex-col md:flex-row">
+                <div class="w-full md:w-1/3">
+                    <h3 class="text-xl font-bold mb-2">Titles</h3>
+                    <ul id="fileList" class="list-disc pl-5"></ul>
                 </div>
             </div>
         </div>
@@ -129,8 +125,7 @@
             listItem.dataset.link = fileLink;
 
             listItem.addEventListener('click', function() {
-                const filePreview = document.getElementById('filePreview');
-                filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="400px"></iframe>`;
+                window.open(this.dataset.link, '_blank');
             });
 
             listItem.addEventListener('contextmenu', function(event) {
@@ -162,8 +157,7 @@
                 listItem.dataset.link = file.fileLink;
 
                 listItem.addEventListener('click', function() {
-                    const filePreview = document.getElementById('filePreview');
-                    filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="400px"></iframe>`;
+                    window.open(this.dataset.link, '_blank');
                 });
 
                 listItem.addEventListener('contextmenu', function(event) {
