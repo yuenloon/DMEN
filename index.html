@@ -95,6 +95,7 @@
                     </div>
                     <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700">Submit</button>
                 </form>
+                <button id="clearStorage" class="w-full bg-red-500 text-white p-2 rounded-lg hover:bg-red-700 mt-4">Clear Local Storage</button>
             </div>
             <div class="w-full md:w-2/3 bg-white p-6 rounded-lg shadow-lg">
                 <h2 class="text-2xl font-bold mb-4">List of Files</h2>
@@ -133,6 +134,14 @@
                 filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="400px"></iframe>`;
             });
 
+            listItem.addEventListener('contextmenu', function(event) {
+                event.preventDefault();
+                if (confirm('Do you want to remove this item?')) {
+                    fileList.removeChild(listItem);
+                    removeFromLocalStorage(date, subject, chapter, remarks, fileLink);
+                }
+            });
+
             fileList.appendChild(listItem);
 
             // Save to localStorage
@@ -158,9 +167,36 @@
                     filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="400px"></iframe>`;
                 });
 
+                listItem.addEventListener('contextmenu', function(event) {
+                    event.preventDefault();
+                    if (confirm('Do you want to remove this item?')) {
+                        fileList.removeChild(listItem);
+                        removeFromLocalStorage(file.date, file.subject, file.chapter, file.remarks, file.fileLink);
+                    }
+                });
+
                 fileList.appendChild(listItem);
             });
         });
+
+        // Clear localStorage
+        document.getElementById('clearStorage').addEventListener('click', function() {
+            localStorage.clear();
+            document.getElementById('fileList').innerHTML = '';
+            alert('Local storage cleared!');
+        });
+
+        function removeFromLocalStorage(date, subject, chapter, remarks, fileLink) {
+            const files = JSON.parse(localStorage.getItem('files')) || [];
+            const updatedFiles = files.filter(file => 
+                file.date !== date || 
+                file.subject !== subject || 
+                file.chapter !== chapter || 
+                file.remarks !== remarks || 
+                file.fileLink !== fileLink
+            );
+            localStorage.setItem('files', JSON.stringify(updatedFiles));
+        }
     </script>
 </body>
 </html>
