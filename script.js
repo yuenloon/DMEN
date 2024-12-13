@@ -17,6 +17,11 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
         filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="400px"></iframe>`;
     });
 
+    listItem.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+        showContextMenu(event, listItem);
+    });
+
     fileList.appendChild(listItem);
 
     // Save to localStorage
@@ -42,6 +47,38 @@ window.addEventListener('load', function() {
             filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="400px"></iframe>`;
         });
 
+        listItem.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+            showContextMenu(event, listItem);
+        });
+
         fileList.appendChild(listItem);
     });
 });
+
+function showContextMenu(event, listItem) {
+    const contextMenu = document.getElementById('contextMenu');
+    contextMenu.style.display = 'block';
+    contextMenu.style.left = `${event.pageX}px`;
+    contextMenu.style.top = `${event.pageY}px`;
+
+    document.getElementById('openLink').onclick = function() {
+        window.open(listItem.dataset.link, '_blank');
+        contextMenu.style.display = 'none';
+    };
+
+    document.getElementById('removeLink').onclick = function() {
+        listItem.parentNode.removeChild(listItem);
+        removeFromLocalStorage(listItem.textContent);
+        contextMenu.style.display = 'none';
+    };
+
+    document.addEventListener('click', function() {
+        contextMenu.style.display = 'none';
+    }, { once: true });
+}
+
+function removeFromLocalStorage(itemText) {
+    const files = JSON.parse(localStorage.getItem('files')) || [];
+    const updatedFiles = files.filter(file => 
+        `${file.date} - ${file.subject} - ${file.chapter[_{{{CITATION{{{_1{](https://github.com/antydemant/lessons-2020/tree/0c6095f45bfd841914ac8e7e25f8c9df273dea69/02-closure-and-context%2Fhomework%2FREADME.md)
