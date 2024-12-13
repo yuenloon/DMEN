@@ -65,8 +65,29 @@
             padding: 10px;
             border-bottom: 1px solid #ccc;
             cursor: pointer;
+            position: relative;
         }
         li:hover {
+            background-color: #f0f0f0;
+        }
+        .context-menu {
+            display: none;
+            position: absolute;
+            z-index: 1000;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .context-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .context-menu li {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .context-menu li:hover {
             background-color: #f0f0f0;
         }
     </style>
@@ -109,6 +130,12 @@
             </div>
         </div>
     </div>
+    <div id="contextMenu" class="context-menu">
+        <ul>
+            <li id="openLink">Open in New Page</li>
+            <li id="removeLink">Remove</li>
+        </ul>
+    </div>
     <script>
         document.getElementById('uploadForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -130,10 +157,7 @@
 
             listItem.addEventListener('contextmenu', function(event) {
                 event.preventDefault();
-                if (confirm('Do you want to remove this item?')) {
-                    fileList.removeChild(listItem);
-                    removeFromLocalStorage(date, subject, chapter, remarks, fileLink);
-                }
+                showContextMenu(event, listItem);
             });
 
             fileList.appendChild(listItem);
@@ -162,27 +186,33 @@
 
                 listItem.addEventListener('contextmenu', function(event) {
                     event.preventDefault();
-                    if (confirm('Do you want to remove this item?')) {
-                        fileList.removeChild(listItem);
-                        removeFromLocalStorage(file.date, file.subject, file.chapter, file.remarks, file.fileLink);
-                    }
+                    showContextMenu(event, listItem);
                 });
 
                 fileList.appendChild(listItem);
             });
         });
 
-        function removeFromLocalStorage(date, subject, chapter, remarks, fileLink) {
-            const files = JSON.parse(localStorage.getItem('files')) || [];
-            const updatedFiles = files.filter(file => 
-                file.date !== date || 
-                file.subject !== subject || 
-                file.chapter !== chapter || 
-                file.remarks !== remarks || 
-                file.fileLink !== fileLink
-            );
-            localStorage.setItem('files', JSON.stringify(updatedFiles));
+        function showContextMenu(event, listItem) {
+            const contextMenu = document.getElementById('contextMenu');
+            contextMenu.style.display = 'block';
+            contextMenu.style.left = `${event.pageX}px`;
+            contextMenu.style.top = `${event.pageY}px`;
+
+            document.getElementById('openLink').onclick = function() {
+                window.open(listItem.dataset.link, '_blank');
+                contextMenu.style.display = 'none';
+            };
+
+            document.getElementById('removeLink').onclick = function() {
+                listItem.parentNode.removeChild(listItem);
+                removeFromLocalStorage(listItem.textContent, listItem.dataset.link);
+                contextMenu.style.display = 'none';
+            };
+
+            document.addEventListener('click', function() {
+                contextMenu.style.display = 'none';
+            }, { once: true });
         }
-    </script>
-</body>
-</html>
+
+        function removeFromLocalStorage(textContent, file
