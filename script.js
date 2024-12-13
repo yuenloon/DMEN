@@ -81,4 +81,4 @@ function showContextMenu(event, listItem) {
 function removeFromLocalStorage(itemText) {
     const files = JSON.parse(localStorage.getItem('files')) || [];
     const updatedFiles = files.filter(file => 
-        `${file.date} - ${[_{{{CITATION{{{_1{](https://github.com/antydemant/lessons-2020/tree/0c6095f45bfd841914ac8e7e25f8c9df273dea69/02-closure-and-context%2Fhomework%2FREADME.md)
+        `${file.date} -[_{{{CITATION{{{_1{](https://github.com/antydemant/lessons-2020/tree/0c6095f45bfd841914ac8e7e25f8c9df273dea69/02-closure-and-context%2Fhomework%2FREADME.md)
