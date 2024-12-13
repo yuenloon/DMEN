@@ -19,11 +19,17 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
         const filePreview = document.getElementById('filePreview');
         filePreview.innerHTML = `
             <iframe 
-                src="${this.dataset.link}#page=1&view=FitH" 
-                width="100%" 
-                height="100%" 
-                style="max-width: 100%; max-height: 100%;"
-            ></iframe>
+                    src="${this.dataset.link}#page=1&view=FitH" 
+                    width="100%" 
+                    height="100%" 
+                    style="max-width: 100%; max-height: 100%;"
+                    sandbox="allow-same-origin allow-scripts allow-downloads"
+                    referrerpolicy="no-referrer"
+                    loading="lazy"
+                    allowfullscreen="false"
+                    mozallowfullscreen="false"
+                    webkitallowfullscreen="false"
+                ></iframe>
         `;
     });
     
@@ -87,6 +93,12 @@ window.addEventListener('load', function() {
                     width="100%" 
                     height="100%" 
                     style="max-width: 100%; max-height: 100%;"
+                    sandbox="allow-same-origin allow-scripts allow-downloads"
+                    referrerpolicy="no-referrer"
+                    loading="lazy"
+                    allowfullscreen="false"
+                    mozallowfullscreen="false"
+                    webkitallowfullscreen="false"
                 ></iframe>
             `;
         });
