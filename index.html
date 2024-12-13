@@ -3,13 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revision files</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>DMEN Studies File Tracker</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+        }
+        .form-container {
+            width: 20%;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-right: 1px solid #ccc;
+        }
+        .list-container {
+            width: 80%;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input[type="text"], input[type="date"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+            position: relative;
+        }
+        li:hover {
+            background-color: #f0f0f0;
+        }
+        .context-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .context-menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        .context-menu li {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .context-menu li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-roboto">
+<body>
     <div class="container">
         <div class="form-container">
-            <h1 class="text-3xl font-bold mb-4">DMEN studies file</h1>
+            <h1 class="text-3xl font-bold mb-4">DMEN Studies File</h1>
             <form id="uploadForm">
                 <div class="mb-4">
                     <label for="date" class="block text-gray-700 font-bold mb-2">Select Date:</label>
@@ -56,6 +139,81 @@
             <li id="removeLink">Remove</li>
         </ul>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const date = document.getElementById('date').value;
+            const subject = document.getElementById('subject').value;
+            const chapter = document.getElementById('chapter').value;
+            const remarks = document.getElementById('remarks').value;
+            const fileLink = document.getElementById('fileLink').value;
+            const fileList = document.getElementById('fileList');
+            const listItem = document.createElement('li');
+            listItem.textContent = `${date} - ${subject} - ${chapter} - ${remarks}`;
+            listItem.dataset.link = fileLink;
+            listItem.addEventListener('click', function() {
+                const filePreview = document.getElementById('filePreview');
+                filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="400px"></iframe>`;
+            });
+            listItem.addEventListener('contextmenu', function(event) {
+                event.preventDefault();
+                showContextMenu(event, listItem);
+            });
+            fileList.appendChild(listItem);
+            // Save to localStorage
+            const files = JSON.parse(localStorage.getItem('files')) || [];
+            files.push({ date, subject, chapter, remarks, fileLink });
+            localStorage.setItem('files', JSON.stringify(files));
+            document.getElementById('uploadForm').reset();
+        });
+
+        // Load from localStorage
+        window.addEventListener('load', function() {
+            const files = JSON.parse(localStorage.getItem('files')) || [];
+            const fileList = document.getElementById('fileList');
+            files.forEach(file => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${file.date} - ${file.subject} - ${file.chapter} - ${file.remarks}`;
+                listItem.dataset.link = file.fileLink;
+                listItem.addEventListener('click', function() {
+                    const filePreview = document.getElementById('filePreview');
+                    filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="400px"></iframe>`;
+                });
+                listItem.addEventListener('contextmenu', function(event) {
+                    event.preventDefault();
+                    showContextMenu(event, listItem);
+                });
+                fileList.appendChild(listItem);
+            });
+        });
+
+        function showContextMenu(event, listItem) {
+            const contextMenu = document.getElementById('contextMenu');
+            contextMenu.style.display = 'block';
+            contextMenu.style.left = `${event.pageX}px`;
+            contextMenu.style.top = `${event.pageY}px`;
+            document.getElementById('openLink').onclick = function() {
+                window.open(listItem.dataset.link, '_blank');
+                contextMenu.style.display = 'none';
+            };
+            document.getElementById('removeLink').onclick = function() {
+                listItem.parentNode.removeChild(listItem);
+                removeFromLocalStorage(listItem.textContent);
+                contextMenu.style.display = 'none';
+            };
+            document.addEventListener('click', function() {
+                contextMenu.style.display = 'none';
+            }, { once: true });
+        }
+
+        function removeFromLocalStorage(itemText) {
+            const files = JSON.parse(localStorage.getItem('files')) || [];
+            const updatedFiles = files.filter(file => 
+                `${file.date} - ${file.subject} - ${file.chapter} - ${file.remarks}` !== itemText
+            );
+            localStorage.setItem('files', JSON.stringify(updatedFiles));
+        }
+    </script>
 </body>
 </html>
