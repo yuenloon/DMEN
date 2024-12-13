@@ -6,79 +6,84 @@
     <title>DMEN Studies File Tracker</title>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 0;
+            padding: 20px;
         }
         .container {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         .form-container {
-            width: 20%;
+            width: 300px;
             padding: 20px;
             background-color: #f9f9f9;
-            border-right: 1px solid #ccc;
+            border-right: 1px solid #ddd;
         }
-        .list-container {
-            width: 80%;
+        .content-container {
+            flex-grow: 1;
+            display: flex;
+        }
+        .titles-container {
+            width: 300px;
+            border-right: 1px solid #ddd;
             padding: 20px;
         }
-        h1 {
-            text-align: center;
-            color: #333;
+        .preview-container {
+            flex-grow: 1;
+            padding: 20px;
         }
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        input[type="text"], input[type="date"] {
+        input, button {
+            width: 100%;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
         }
         button {
-            padding: 10px;
             background-color: #007bff;
-            color: #fff;
+            color: white;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
         }
         button:hover {
             background-color: #0056b3;
         }
-        ul {
+        #fileList {
             list-style-type: none;
             padding: 0;
+            max-height: 500px;
+            overflow-y: auto;
         }
-        li {
+        #fileList li {
             padding: 10px;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #ddd;
             cursor: pointer;
-            position: relative;
         }
-        li:hover {
+        #fileList li:hover {
             background-color: #f0f0f0;
         }
+        #filePreview {
+            border: 1px solid #ddd;
+            min-height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         .context-menu {
-            display: none;
             position: absolute;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             z-index: 1000;
         }
         .context-menu ul {
             list-style-type: none;
-            margin: 0;
             padding: 0;
+            margin: 0;
         }
         .context-menu li {
             padding: 10px;
@@ -92,48 +97,31 @@
 <body>
     <div class="container">
         <div class="form-container">
-            <h1 class="text-3xl font-bold mb-4">DMEN Studies File</h1>
+            <h2>DMEN Studies File</h2>
             <form id="uploadForm">
-                <div class="mb-4">
-                    <label for="date" class="block text-gray-700 font-bold mb-2">Select Date:</label>
-                    <input type="date" id="date" name="date" class="w-full p-2 border border-gray-300 rounded-lg">
-                </div>
-                <div class="mb-4">
-                    <label for="subjects" class="block text-gray-700 font-bold mb-2">Subject:</label>
-                    <input type="text" id="subject" name="subject" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter subject">
-                </div>
-                <div class="mb-4">
-                    <label for="chapter" class="block text-gray-700 font-bold mb-2">Chapter:</label>
-                    <input type="text" id="chapter" name="chapter" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter chapter">
-                </div>
-                <div class="mb-4">
-                    <label for="remarks" class="block text-gray-700 font-bold mb-2">Remarks:</label>
-                    <input type="text" id="remarks" name="remarks" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter remarks">
-                </div>
-                <div class="mb-4">
-                    <label for="fileLink" class="block text-gray-700 font-bold mb-2">File Link (Google Drive/Dropbox):</label>
-                    <input type="text" id="fileLink" name="fileLink" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Enter file link">
-                </div>
-                <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700">Submit</button>
+                <input type="date" id="date" required>
+                <input type="text" id="subject" placeholder="Subject" required>
+                <input type="text" id="chapter" placeholder="Chapter" required>
+                <input type="text" id="remarks" placeholder="Remarks">
+                <input type="text" id="fileLink" placeholder="File Link" required>
+                <button type="submit">Submit</button>
             </form>
         </div>
-        <div class="list-container">
-            <h2 class="text-2xl font-bold mb-4">List of Files</h2>
-            <div class="flex flex-row">
-                <div class="w-2/5">
-                    <h3 class="text-xl font-bold mb-2">Titles</h3>
-                    <ul id="fileList" class="list-disc pl-5"></ul>
-                </div>
-                <div class="w-3/5">
-                    <h3 class="text-xl font-bold mb-2">File Preview</h3>
-                    <div id="filePreview" class="border border-gray-300 p-4 rounded-lg">
-                        <p>Select a document to view</p>
-                    </div>
+        <div class="content-container">
+            <div class="titles-container">
+                <h3>Titles</h3>
+                <ul id="fileList"></ul>
+            </div>
+            <div class="preview-container">
+                <h3>File Preview</h3>
+                <div id="filePreview">
+                    <p>Select a document to view</p>
                 </div>
             </div>
         </div>
     </div>
-    <div id="contextMenu" class="context-menu">
+
+    <div id="contextMenu" style="display:none; position:absolute;">
         <ul>
             <li id="openLink">Open in New Page</li>
             <li id="removeLink">Remove</li>
@@ -143,76 +131,108 @@
     <script>
         document.getElementById('uploadForm').addEventListener('submit', function(event) {
             event.preventDefault();
+            
+            // Get form values
             const date = document.getElementById('date').value;
             const subject = document.getElementById('subject').value;
             const chapter = document.getElementById('chapter').value;
             const remarks = document.getElementById('remarks').value;
             const fileLink = document.getElementById('fileLink').value;
+            
+            // Create list item
             const fileList = document.getElementById('fileList');
             const listItem = document.createElement('li');
             listItem.textContent = `${date} - ${subject} - ${chapter} - ${remarks}`;
             listItem.dataset.link = fileLink;
+            
+            // Add click event to show preview
             listItem.addEventListener('click', function() {
                 const filePreview = document.getElementById('filePreview');
-                filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="400px"></iframe>`;
+                filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="500px"></iframe>`;
             });
+            
+            // Add context menu event
             listItem.addEventListener('contextmenu', function(event) {
                 event.preventDefault();
                 showContextMenu(event, listItem);
             });
+            
+            // Append to list
             fileList.appendChild(listItem);
+            
             // Save to localStorage
-            const files = JSON.parse(localStorage.getItem('files')) || [];
-            files.push({ date, subject, chapter, remarks, fileLink });
+            const files = JSON.parse(localStorage.getItem('files') || '[]');
+            files.push({ 
+                date, 
+                subject, 
+                chapter, 
+                remarks, 
+                fileLink 
+            });
             localStorage.setItem('files', JSON.stringify(files));
+            
+            // Reset form
             document.getElementById('uploadForm').reset();
         });
 
-        // Load from localStorage
+        // Load files from localStorage on page load
         window.addEventListener('load', function() {
-            const files = JSON.parse(localStorage.getItem('files')) || [];
+            const files = JSON.parse(localStorage.getItem('files') || '[]');
             const fileList = document.getElementById('fileList');
+            
             files.forEach(file => {
                 const listItem = document.createElement('li');
                 listItem.textContent = `${file.date} - ${file.subject} - ${file.chapter} - ${file.remarks}`;
                 listItem.dataset.link = file.fileLink;
+                
+                // Add click event to show preview
                 listItem.addEventListener('click', function() {
                     const filePreview = document.getElementById('filePreview');
-                    filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="400px"></iframe>`;
+                    filePreview.innerHTML = `<iframe src="${this.dataset.link}" width="100%" height="500px"></iframe>`;
                 });
+                
+                // Add context menu event
                 listItem.addEventListener('contextmenu', function(event) {
                     event.preventDefault();
                     showContextMenu(event, listItem);
                 });
+                
                 fileList.appendChild(listItem);
             });
         });
 
+        // Context menu functionality
         function showContextMenu(event, listItem) {
             const contextMenu = document.getElementById('contextMenu');
             contextMenu.style.display = 'block';
             contextMenu.style.left = `${event.pageX}px`;
             contextMenu.style.top = `${event.pageY}px`;
+            
+            // Open link
             document.getElementById('openLink').onclick = function() {
                 window.open(listItem.dataset.link, '_blank');
                 contextMenu.style.display = 'none';
             };
+            
+            // Remove item
             document.getElementById('removeLink').onclick = function() {
-                listItem.parentNode.removeChild(listItem);
-                removeFromLocalStorage(listItem.textContent);
+                // Remove from list
+                listItem.remove();
+                
+                // Remove from localStorage
+                const files = JSON.parse(localStorage.getItem('files') || '[]');
+                const updatedFiles = files.filter(file => 
+                    `${file.date} - ${file.subject} - ${file.chapter} - ${file.remarks}` !== listItem.textContent
+                );
+                localStorage.setItem('files', JSON.stringify(updatedFiles));
+                
                 contextMenu.style.display = 'none';
             };
+            
+            // Hide context menu when clicking elsewhere
             document.addEventListener('click', function() {
                 contextMenu.style.display = 'none';
             }, { once: true });
-        }
-
-        function removeFromLocalStorage(itemText) {
-            const files = JSON.parse(localStorage.getItem('files')) || [];
-            const updatedFiles = files.filter(file => 
-                `${file.date} - ${file.subject} - ${file.chapter} - ${file.remarks}` !== itemText
-            );
-            localStorage.setItem('files', JSON.stringify(updatedFiles));
         }
     </script>
 </body>
