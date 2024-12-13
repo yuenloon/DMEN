@@ -1,77 +1,82 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
-    padding: 0;
+    padding: 20px;
 }
 .container {
-    max-width: 1000px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 .form-container {
-    width: 20%;
+    width: 300px;
     padding: 20px;
     background-color: #f9f9f9;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #ddd;
 }
-.list-container {
-    width: 80%;
+.content-container {
+    flex-grow: 1;
+    display: flex;
+}
+.titles-container {
+    width: 300px;
+    border-right: 1px solid #ddd;
     padding: 20px;
 }
-h1 {
-    text-align: center;
-    color: #333;
+.preview-container {
+    flex-grow: 1;
+    padding: 20px;
 }
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-input[type="text"], input[type="date"] {
+input, button {
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
 }
 button {
-    padding: 10px;
     background-color: #007bff;
-    color: #fff;
+    color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 button:hover {
     background-color: #0056b3;
 }
-ul {
+#fileList {
     list-style-type: none;
     padding: 0;
+    max-height: 500px;
+    overflow-y: auto;
 }
-li {
+#fileList li {
     padding: 10px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
     cursor: pointer;
-    position: relative;
 }
-li:hover {
+#fileList li:hover {
     background-color: #f0f0f0;
 }
+#filePreview {
+    border: 1px solid #ddd;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .context-menu {
-    display: none;
     position: absolute;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     z-index: 1000;
 }
 .context-menu ul {
     list-style-type: none;
-    margin: 0;
     padding: 0;
+    margin: 0;
 }
 .context-menu li {
     padding: 10px;
