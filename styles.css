@@ -139,6 +139,7 @@ button:hover {
         width: 300px;
         border-bottom: none;
         border-right: 1px solid #ddd;
+        order: 2; /* Move form container to the second position */
     }
 
     .content-container {
@@ -149,6 +150,7 @@ button:hover {
         width: 300px;
         border-bottom: none;
         border-right: 1px solid #ddd;
+        order: 3; /* Move titles container to the third position */
     }
 
     .preview-container {
@@ -156,5 +158,6 @@ button:hover {
         padding: 20px;
         display: flex;
         flex-direction: column;
+        order: 1; /* Move preview container to the first position */
     }
 }
