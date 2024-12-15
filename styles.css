@@ -9,7 +9,7 @@ body {
 
 .container {
     display: flex;
-    flex-direction: column !important; /* Force column layout for mobile */
+    flex-direction: column ; /* Force column layout for mobile */
     height: 100vh;
     max-width: 100%;
     background-color: white;
@@ -132,7 +132,7 @@ button:hover {
 /* Media Queries for Responsive Design */
 @media (min-width: 768px) {
     .container {
-        flex-direction: row; /* Change to row for left-to-right layout on desktop */
+        flex-direction: row !important; /* Change to row for left-to-right layout on desktop */
     }
 
     .form-container {
