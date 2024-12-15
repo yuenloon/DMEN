@@ -9,7 +9,7 @@ body {
 
 .container {
     display: flex;
-    flex-direction: column ; /* Force column layout for mobile */
+    flex-direction: column; /* Force column layout for mobile */
     height: 100vh;
     max-width: 100%;
     background-color: white;
@@ -26,7 +26,7 @@ body {
 .content-container {
     flex-grow: 1;
     display: flex;
-    flex-direction: column !important; /* Force column layout for mobile */
+    flex-direction: column; /* Force column layout for mobile */
 }
 
 .titles-container {
@@ -143,7 +143,7 @@ button:hover {
     }
 
     .content-container {
-        flex-direction: row; /* Ensure content flows left-to-right */
+        flex-direction: row !important; /* Ensure content flows left-to-right */
     }
 
     .titles-container {
