@@ -9,7 +9,7 @@ body {
 
 .container {
     display: flex;
-    flex-direction: column; /* Default to column for mobile */
+    flex-direction: column !important; /* Force column layout for mobile */
     height: 100vh;
     max-width: 100%;
     background-color: white;
@@ -26,7 +26,7 @@ body {
 .content-container {
     flex-grow: 1;
     display: flex;
-    flex-direction: column; /* Default to column for mobile */
+    flex-direction: column !important; /* Force column layout for mobile */
 }
 
 .titles-container {
