@@ -126,3 +126,26 @@ button:hover {
 .context-menu li:hover {
     background-color: #f0f0f0;
 }
+
+/* Media Queries for Responsive Design */
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+
+    .form-container {
+        width: 300px;
+        border-bottom: none;
+        border-right: 1px solid #ddd;
+    }
+
+    .content-container {
+        flex-direction: row;
+    }
+
+    .titles-container {
+        width: 300px;
+        border-bottom: none;
+        border-right: 1px solid #ddd;
+    }
+}
