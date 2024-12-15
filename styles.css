@@ -132,23 +132,23 @@ button:hover {
 /* Media Queries for Responsive Design */
 @media (min-width: 768px) {
     .container {
-        flex-direction: row-reverse;
+        flex-direction: row;
     }
 
     .form-container {
         width: 300px;
         border-bottom: none;
-        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
     }
 
     .content-container {
-        flex-direction: row-reverse;
+        flex-direction: row;
     }
 
     .titles-container {
         width: 300px;
         border-bottom: none;
-        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
     }
 
     .preview-container {
