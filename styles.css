@@ -130,7 +130,7 @@ button:hover {
 }
 
 /* Media Queries for Responsive Design */
-@media (min-width: 768px) {
+@media (min-width: 758px) {
     .container {
         flex-direction: row; /* Change to row for left-to-right layout on desktop */
     }
