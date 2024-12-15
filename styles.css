@@ -23,6 +23,12 @@ body {
     border-bottom: 1px solid #ddd;
 }
 
+.content-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .titles-container {
     width: 100%;
     border-bottom: 1px solid #ddd;
@@ -143,5 +149,12 @@ button:hover {
         width: 300px;
         border-bottom: none;
         border-left: 1px solid #ddd;
+    }
+
+    .preview-container {
+        flex-grow: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
     }
 }
