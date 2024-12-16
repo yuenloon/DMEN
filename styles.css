@@ -134,30 +134,26 @@ button:hover {
     .container {
         flex-direction: row; /* Change to row for left-to-right layout on desktop */
     }
-
     .form-container {
         width: 300px;
         border-bottom: none;
         border-right: 1px solid #ddd;
-        order: 1; /* First position */
+        order: 1; /* First position (leftmost) */
     }
-
     .content-container {
         flex-direction: row; /* Ensure content flows left-to-right */
     }
-
     .titles-container {
         width: 300px;
         border-bottom: none;
         border-right: 1px solid #ddd;
-        order: 2; /* Second position */
+        order: 2; /* Second position (middle) */
     }
-
     .preview-container {
         flex-grow: 1;
         padding: 20px;
         display: flex;
         flex-direction: column;
-        order: 3; /* Third position */
+        order: 3; /* Third position (rightmost) */
     }
 }
