@@ -1,6 +1,3 @@
-Certainly! To reverse the order of your CSS media queries, we'll first define the styles for desktop browsers and then override them with styles for mobile browsers using a media query. Here's how the revised CSS would look:
-
-```css
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -12,7 +9,7 @@ body {
 
 .container {
     display: flex;
-    flex-direction: row; /* Default to row for desktop */
+    flex-direction: row;
     height: 100vh;
     max-width: 100%;
     background-color: white;
@@ -20,27 +17,35 @@ body {
 }
 
 .form-container {
-    width: 300px;
-    border-bottom: none;
+    width: 25%; /* Specifically set to 25% of container width */
     border-right: 1px solid #ddd;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .content-container {
-    flex-direction: row; /* Ensure content flows left-to-right */
+    display: flex;
+    flex-direction: row;
     flex-grow: 1;
 }
 
 .titles-container {
-    width: 300px;
-    border-bottom: none;
+    width: 15%; /* Specifically set to 15% of container width */
     border-right: 1px solid #ddd;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .preview-container {
-    flex-grow: 1;
+    width: 60%; /* Remaining space for preview */
     padding: 20px;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
 }
 
 input, button {
@@ -85,12 +90,14 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* Ensure content is clipped if too large */
 }
 
 #filePreview iframe {
     width: 100%;
     height: 100%;
     border: none;
+    object-fit: contain; /* Ensures the first page fits entirely within the preview */
 }
 
 .context-menu {
@@ -132,28 +139,21 @@ button:hover {
 /* Media Queries for Responsive Design */
 @media (max-width: 767px) {
     .container {
-        flex-direction: column; /* Change to column for mobile */
-    }
-    .form-container {
-        width: 100%;
-        padding: 20px;
-        background-color: #f9f9f9;
-        border-bottom: 1px solid #ddd;
-    }
-    .content-container {
-        flex-direction: column; /* Default to column for mobile */
-    }
-    .titles-container {
-        width: 100%;
-        padding: 20px;
-        border-bottom: 1px solid #ddd;
-    }
-    .preview-container {
-        padding: 20px;
-        display: flex;
         flex-direction: column;
     }
+    
+    .form-container, 
+    .titles-container, 
+    .preview-container {
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .form-container {
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .titles-container {
+        border-bottom: 1px solid #ddd;
+    }
 }
-```
-
-In this revised version, the default styles are set for desktop browsers, and then the media query `@media (max-width: 767px)` is used to apply the styles for mobile browsers, overriding the desktop styles where necessary.
