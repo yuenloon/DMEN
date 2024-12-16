@@ -9,7 +9,6 @@ body {
 
 .container {
     display: flex;
-    flex-direction: row;
     height: 100vh;
     max-width: 100%;
     background-color: white;
@@ -17,55 +16,29 @@ body {
 }
 
 .form-container {
-    width: 25%; /* Specifically set to 25% of container width */
-    border-right: 1px solid #ddd;
+    width: 300px;
     padding: 20px;
     background-color: #f9f9f9;
-    box-sizing: border-box;
-    overflow-y: auto;
+    border-right: 1px solid #ddd;
 }
 
 .content-container {
-    display: flex;
-    flex-direction: row;
     flex-grow: 1;
+    display: flex;
 }
 
 .titles-container {
-    width: 15%; /* Specifically set to 15% of container width */
+    width: 300px;
     border-right: 1px solid #ddd;
     padding: 20px;
-    background-color: #f9f9f9;
-    box-sizing: border-box;
     overflow-y: auto;
 }
 
 .preview-container {
-    width: 80%; /* Remaining space in content container */
+    flex-grow: 1;
     padding: 20px;
     display: flex;
-    flex-direction: row; /* Changed from column to row */
-    box-sizing: border-box;
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-}
-
-#filePreview {
-    width: 100%; /* Full width of preview container */
-    height: 100%; /* Full height of preview container */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-#filePreview iframe {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    border: none;
+    flex-direction: column;
 }
 
 input, button {
@@ -110,14 +83,12 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Ensure content is clipped if too large */
 }
 
 #filePreview iframe {
     width: 100%;
     height: 100%;
     border: none;
-    object-fit: contain; /* Ensures the first page fits entirely within the preview */
 }
 
 .context-menu {
