@@ -130,6 +130,7 @@ button:hover {
 }
 
 /* Media Queries for Responsive Design */
+/* Media Queries for Responsive Design */
 @media (min-width: 768px) {
     .container {
         flex-direction: row; /* Change to row for left-to-right layout on desktop */
@@ -138,22 +139,20 @@ button:hover {
         width: 300px;
         border-bottom: none;
         border-right: 1px solid #ddd;
-        order: 1; /* First position (leftmost) */
     }
     .content-container {
         flex-direction: row; /* Ensure content flows left-to-right */
+        flex-grow: 1;
     }
     .titles-container {
         width: 300px;
         border-bottom: none;
         border-right: 1px solid #ddd;
-        order: 2; /* Second position (middle) */
     }
     .preview-container {
         flex-grow: 1;
         padding: 20px;
         display: flex;
         flex-direction: column;
-        order: 3; /* Third position (rightmost) */
     }
 }
