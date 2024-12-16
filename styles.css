@@ -1,3 +1,6 @@
+Certainly! To reverse the order of your CSS media queries, we'll first define the styles for desktop browsers and then override them with styles for mobile browsers using a media query. Here's how the revised CSS would look:
+
+```css
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -9,7 +12,7 @@ body {
 
 .container {
     display: flex;
-    flex-direction: column; /* Default to column for mobile */
+    flex-direction: row; /* Default to row for desktop */
     height: 100vh;
     max-width: 100%;
     background-color: white;
@@ -17,23 +20,20 @@ body {
 }
 
 .form-container {
-    width: 100%;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-bottom: 1px solid #ddd;
+    width: 300px;
+    border-bottom: none;
+    border-right: 1px solid #ddd;
 }
 
 .content-container {
+    flex-direction: row; /* Ensure content flows left-to-right */
     flex-grow: 1;
-    display: flex;
-    flex-direction: column; /* Default to column for mobile */
 }
 
 .titles-container {
-    width: 100%;
-    border-bottom: 1px solid #ddd;
-    padding: 20px;
-    overflow-y: auto;
+    width: 300px;
+    border-bottom: none;
+    border-right: 1px solid #ddd;
 }
 
 .preview-container {
@@ -130,29 +130,30 @@ button:hover {
 }
 
 /* Media Queries for Responsive Design */
-/* Media Queries for Responsive Design */
-@media (min-width: 768px) {
+@media (max-width: 767px) {
     .container {
-        flex-direction: row; /* Change to row for left-to-right layout on desktop */
+        flex-direction: column; /* Change to column for mobile */
     }
     .form-container {
-        width: 300px;
-        border-bottom: none;
-        border-right: 1px solid #ddd;
+        width: 100%;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-bottom: 1px solid #ddd;
     }
     .content-container {
-        flex-direction: row; /* Ensure content flows left-to-right */
-        flex-grow: 1;
+        flex-direction: column; /* Default to column for mobile */
     }
     .titles-container {
-        width: 300px;
-        border-bottom: none;
-        border-right: 1px solid #ddd;
+        width: 100%;
+        padding: 20px;
+        border-bottom: 1px solid #ddd;
     }
     .preview-container {
-        flex-grow: 1;
         padding: 20px;
         display: flex;
         flex-direction: column;
     }
 }
+```
+
+In this revised version, the default styles are set for desktop browsers, and then the media query `@media (max-width: 767px)` is used to apply the styles for mobile browsers, overriding the desktop styles where necessary.
