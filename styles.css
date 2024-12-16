@@ -139,7 +139,7 @@ button:hover {
         width: 300px;
         border-bottom: none;
         border-right: 1px solid #ddd;
-        order: 3; /* First position */
+        order: 1; /* First position */
     }
 
     .content-container {
@@ -158,6 +158,6 @@ button:hover {
         padding: 20px;
         display: flex;
         flex-direction: column;
-        order: 1; /* Third position */
+        order: 3; /* Third position */
     }
 }
