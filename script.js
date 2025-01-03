@@ -2,7 +2,7 @@ document.getElementById('uploadForm').addEventListener('submit', function(event)
     event.preventDefault();  
     
     // Get form values  
-    const subject = document.getElementById('subject').value;  
+    const subject = document.querySelector('input[name="subject"]:checked').value; // Get selected radio button value  
     const chapter = document.getElementById('chapter').value;  
     const remarks = document.getElementById('remarks').value;  
     const fileLink = document.getElementById('fileLink').value;  
