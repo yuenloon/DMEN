@@ -11,7 +11,18 @@
         <div class="form-container">  
             <h2>DMEN Studies File</h2>  
             <form id="uploadForm">  
-                <input type="text" id="subject" placeholder="Subject" required>  
+                <div>  
+                    <label>Subject:</label>  
+                    <!-- Radio buttons for subject selection -->  
+                    <div>  
+                        <input type="radio" id="eng_static" name="subject" value="eng_static" required>  
+                        <label for="eng_static">ENG Static</label>  
+                    </div>  
+                    <div>  
+                        <input type="radio" id="eng_math_2" name="subject" value="eng_math_2" required>  
+                        <label for="eng_math_2">ENG Math 2</label>  
+                    </div>  
+                </div>  
                 <input type="text" id="chapter" placeholder="Chapter" required>  
                 <input type="text" id="remarks" placeholder="Remarks">  
                 <input type="text" id="fileLink" placeholder="File Link" required>  
