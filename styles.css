@@ -1,110 +1,117 @@
+/* General Styles */  
 body {  
     font-family: Arial, sans-serif;  
     background-color: #f4f4f4;  
     margin: 0;  
     padding: 0;  
     height: 100vh;  
-    overflow: hidden;  
+    overflow: hidden; /* Prevents scrolling */  
 }  
 
+/* Container */  
 .container {  
     display: flex;  
-    height: 100vh;  
+    height: 100vh; /* Full height */  
     max-width: 100%;  
     background-color: white;  
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
 }  
 
+/* Form Styles */  
 .form-container {  
-    width: 300px;  
+    width: 300px; /* Fixed width for form */  
     padding: 20px;  
-    background-color: #f9f9f9;  
-    border-right: 1px solid #ddd;  
-}  
-
-.content-container {  
-    flex-grow: 1;  
+    background-color: #f9f9f9; /* Light background for contrast */  
+    border-right: 1px solid #ddd; /* Divider line */  
     display: flex;  
-}  
-
-.titles-container {  
-    width: 300px;  
-    border-right: 1px solid #ddd;  
-    padding: 20px;  
-    overflow-y: auto;  
-}  
-
-.preview-container {  
-    flex-grow: 1;  
-    padding: 20px;  
-    display: flex;  
-    flex-direction: column;  
+    flex-direction: column; /* Align children vertically */  
 }  
 
 input, button {  
-    width: 100%;  
+    width: 100%; /* Full width buttons and inputs */  
     padding: 10px;  
-    margin-bottom: 10px;  
-    box-sizing: border-box;  
+    margin-bottom: 10px; /* Space between elements */  
+    box-sizing: border-box; /* Include padding and borders in width */  
 }  
 
-input {  
-    border: 1px solid #ccc;  
-    border-radius: 5px;  
-}  
-
+/* Button Styles */  
 button {  
-    background-color: #007bff;  
+    background-color: #007bff; /* Primary button color */  
     color: white;  
     border: none;  
-    border-radius: 5px; /* Added rounded corners */  
     cursor: pointer;  
+    transition: background-color 0.3s ease; /* Smooth transition */  
 }  
 
 button:hover {  
-    background-color: #0056b3;  
+    background-color: #0056b3; /* Darker shade on hover */  
 }  
 
+/* Content Container */  
+.content-container {  
+    flex-grow: 1; /* Take remaining space */  
+    display: flex; /* Flexbox for layout */  
+}  
+
+/* Titles Section */  
+.titles-container {  
+    width: 300px; /* Fixed width for titles */  
+    border-right: 1px solid #ddd; /* Divider line */  
+    padding: 20px;  
+    overflow-y: auto; /* Scroll if overflow */  
+}  
+
+/* Preview Section */  
+.preview-container {  
+    flex-grow: 1; /* Take remaining space */  
+    padding: 20px;  
+    display: flex;  
+    flex-direction: column; /* Align children vertically */  
+}  
+
+/* File List Styling */  
 #fileList {  
     list-style-type: none;  
-    padding: 0;  
-    max-height: calc(100vh - 100px); /* Adjusted for better spacing */  
-    overflow-y: auto;  
+    padding: 0; /* Remove default padding */  
+    max-height: calc(100vh - 150px); /* Better height adjustment */  
+    overflow-y: auto; /* Scroll if overflow */  
+    margin-top: 20px; /* Space from other elements */  
 }  
 
 #fileList li {  
     padding: 10px;  
-    border-bottom: 1px solid #ddd;  
+    border-bottom: 1px solid #ddd; /* Separator for list items */  
     cursor: pointer;  
-    transition: background-color 0.3s ease;  
+    transition: background-color 0.3s ease; /* Smooth transition */  
 }  
 
 #fileList li:hover {  
-    background-color: #f0f0f0;  
+    background-color: #f0f0f0; /* Highlight effect */  
 }  
 
+/* File Preview Area */  
 #filePreview {  
-    flex-grow: 1;  
-    border: 1px solid #ddd;  
+    flex-grow: 1; /* Take remaining space */  
+    border: 1px solid #ddd; /* Preview border */  
     display: flex;  
-    justify-content: center;  
-    align-items: center;  
+    justify-content: center; /* Center content */  
+    align-items: center; /* Center vertically */  
 }  
 
 #filePreview iframe {  
-    width: 100%;  
-    height: 100%;  
-    border: none;  
+    width: 100%; /* Full width for iframe */  
+    height: 100%; /* Full height for iframe */  
+    border: none; /* No border on iframe */  
 }  
 
+/* Context Menu Styles */  
 .context-menu {  
     position: fixed;  
     background-color: white;  
     border: 1px solid #ddd;  
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);  
-    z-index: 1000;  
-    display: none;  
-    border-radius: 5px; /* Added rounded corners */  
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  
+    z-index: 1000; /* Above other elements */  
+    display: none; /* Hidden by default */  
 }  
 
 .context-menu-backdrop {  
@@ -113,45 +120,45 @@ button:hover {
     left: 0;  
     width: 100%;  
     height: 100%;  
-    background-color: rgba(0,0,0,0.1);  
-    z-index: 999;  
+    background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent backdrop */  
+    z-index: 999; /* Below context menu */  
 }  
 
 .context-menu ul {  
-    list-style-type: none;  
+    list-style-type: none; /* Remove default list styling */  
     padding: 0;  
-    margin: 0;  
-    min-width: 150px;  
+    margin: 0; /* Remove margin */  
+    min-width: 150px; /* Minimum width for context menu */  
 }  
 
 .context-menu li {  
-    padding: 10px;  
+    padding: 10px; /* Padding for menu items */  
     cursor: pointer;  
-    transition: background-color 0.3s ease;  
+    transition: background-color 0.3s ease; /* Smooth transition */  
 }  
 
 .context-menu li:hover {  
-    background-color: #f0f0f0;  
+    background-color: #f0f0f0; /* Highlight on hover */  
 }  
 
 /* Media Queries for Responsive Design */  
 @media (max-width: 1000px) {  
     .container {  
-        flex-direction: column;  
+        flex-direction: column; /* Stack vertically on small screens */  
     }  
     
     .form-container,   
     .titles-container,   
     .preview-container {  
-        width: 100%;  
-        padding: 20px;  
+        width: 100%; /* Full width on small screens */  
+        padding: 20px; /* Padding */  
     }  
     
     .form-container {  
-        border-bottom: 1px solid #ddd;  
+        border-bottom: 1px solid #ddd; /* Separator for form */  
     }  
     
     .titles-container {  
-        border-bottom: 1px solid #ddd;  
+        border-bottom: 1px solid #ddd; /* Separator for titles */  
     }  
 }
