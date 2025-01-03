@@ -34,6 +34,17 @@ input, button {
     box-sizing: border-box; /* Include padding and borders in width */  
 }  
 
+/* Radio Button Alignment */  
+.form-container div {  
+    display: flex; /* Use flexbox for layout */  
+    align-items: center; /* Align items vertically */  
+    margin-bottom: 10px; /* Space between radio options */  
+}  
+
+.form-container input[type="radio"] {  
+    margin-right: 10px; /* Space between radio button and label */  
+}  
+
 /* Button Styles */  
 button {  
     background-color: #007bff; /* Primary button color */  
