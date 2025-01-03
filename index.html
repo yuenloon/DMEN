@@ -1,45 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DMEN Studies File Tracker</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <div class="form-container">
-            <h2>DMEN Studies File</h2>
-            <form id="uploadForm">
-                <input type="date" id="date" required>
-                <input type="text" id="subject" placeholder="Subject" required>
-                <input type="text" id="chapter" placeholder="Chapter" required>
-                <input type="text" id="remarks" placeholder="Remarks">
-                <input type="text" id="fileLink" placeholder="File Link" required>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-        <div class="content-container">
-            <div class="titles-container">
-                <h3>Titles</h3>
-                <ul id="fileList"></ul>
-            </div>
-            <div class="preview-container">
-                <h3>File Preview</h3>
-                <div id="filePreview">
-                    <p>Select a document to view</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>DMEN Studies File Tracker</title>  
+    <link rel="stylesheet" href="styles.css">  
+</head>  
+<body>  
+    <div class="container">  
+        <div class="form-container">  
+            <h2>DMEN Studies File</h2>  
+            <form id="uploadForm">  
+                <input type="text" id="subject" placeholder="Subject" required>  
+                <input type="text" id="chapter" placeholder="Chapter" required>  
+                <input type="text" id="remarks" placeholder="Remarks">  
+                <input type="text" id="fileLink" placeholder="File Link" required>  
+                <button type="submit">Submit</button>  
+            </form>  
+        </div>  
+        <div class="content-container">  
+            <div class="titles-container">  
+                <h3>Titles</h3>  
+                <ul id="fileList"></ul>  
+            </div>  
+            <div class="preview-container">  
+                <h3>File Preview</h3>  
+                <div id="filePreview">  
+                    <p>Select a document to view</p>  
+                </div>  
+            </div>  
+        </div>  
+    </div>  
 
-    <div id="contextMenu" class="context-menu">
-        <ul>
-            <li id="openLink">Open in New Page</li>
-            <li id="removeLink">Remove</li>
-        </ul>
-    </div>
+    <div id="contextMenu" class="context-menu">  
+        <ul>  
+            <li id="openLink">Open in New Page</li>  
+            <li id="removeLink">Remove</li>  
+        </ul>  
+    </div>  
 
-    <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>  
+</body>  
 </html>
