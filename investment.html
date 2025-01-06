@@ -12,13 +12,38 @@
         <div class="form-container">  
             <h2>Add New Investment</h2>  
             <form id="investmentForm" action="https://formspree.io/f/xdkkpwkk" method="POST">  
-                <input type="text" id="investmentType" name="investmentType" placeholder="Investment Type (e.g., Share, ASNB, PRS)" required>  
-                <input type="number" id="investmentAmount" name="investmentAmount" placeholder="Investment Amount" step="0.01" required>  
-                <input type="number" id="tax" name="tax" placeholder="Tax Amount" step="0.01" required>  
-                <input type="number" id="serviceCharge" name="serviceCharge" placeholder="Service Charge" step="0.01" required>  
-                <input type="number" id="dividend" name="dividend" placeholder="Dividend Received" step="0.01" required>  
-                <input type="date" id="investmentDate" name="investmentDate" placeholder="Date" required>  
-                <textarea id="investmentRemarks" name="investmentRemarks" placeholder="Remarks"></textarea>  
+                <div class="form-row">  
+                    <div class="form-field">  
+                        <label for="investmentType">Investment Type:</label>  
+                        <input type="text" id="investmentType" name="investmentType" placeholder="e.g., Share, ASNB, PRS" required>  
+                    </div>  
+                    <div class="form-field">  
+                        <label for="investmentAmount">Investment Amount:</label>  
+                        <input type="number" id="investmentAmount" name="investmentAmount" placeholder="Amount" step="0.01" required>  
+                    </div>  
+                    <div class="form-field">  
+                        <label for="tax">Tax:</label>  
+                        <input type="number" id="tax" name="tax" placeholder="Tax Amount" step="0.01" required>  
+                    </div>  
+                </div>  
+                <div class="form-row">  
+                    <div class="form-field">  
+                        <label for="serviceCharge">Service Charge:</label>  
+                        <input type="number" id="serviceCharge" name="serviceCharge" placeholder="Service Charge" step="0.01" required>  
+                    </div>  
+                    <div class="form-field">  
+                        <label for="dividend">Dividend Received:</label>  
+                        <input type="number" id="dividend" name="dividend" placeholder="Dividend" step="0.01">  
+                    </div>  
+                    <div class="form-field">  
+                        <label for="investmentDate">Investment Date:</label>  
+                        <input type="date" id="investmentDate" name="investmentDate" placeholder="Date" required>  
+                    </div>  
+                </div>  
+                <div class="form-field">  
+                    <label for="investmentRemarks">Remarks:</label>  
+                    <textarea id="investmentRemarks" name="investmentRemarks" placeholder="Remarks"></textarea>  
+                </div>  
                 <button type="submit">Add Investment</button>  
             </form>  
         </div>  
