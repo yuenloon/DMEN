@@ -11,40 +11,51 @@
         <h1>Investment Tracker</h1>  
         <div class="form-container">  
             <h2>Add New Investment</h2>  
-            <form id="investmentForm" action="https://formspree.io/f/xdkkpwkk" method="POST">  
-                <div class="form-row">  
-                    <div class="form-field">  
-                        <label for="investmentType">Investment Type:</label>  
-                        <input type="text" id="investmentType" name="investmentType" placeholder="e.g., Share, ASNB, PRS">  
-                    </div>  
-                    <div class="form-field">  
-                        <label for="investmentAmount">Investment Amount:</label>  
-                        <input type="number" id="investmentAmount" name="investmentAmount" placeholder="Amount" step="0.01">  
-                    </div>  
-                    <div class="form-field">  
-                        <label for="tax">Tax:</label>  
-                        <input type="number" id="tax" name="tax" placeholder="Tax Amount" step="0.01">  
-                    </div>  
+            <form id="investmentForm">  
+                <div class="form-field">  
+                    <label for="investmentType">Investment Type:</label>  
+                    <input type="text" id="investmentType" name="investmentType" placeholder="Investment Type">  
                 </div>  
-                <div class="form-row">  
-                    <div class="form-field">  
-                        <label for="serviceCharge">Service Charge:</label>  
-                        <input type="number" id="serviceCharge" name="serviceCharge" placeholder="Service Charge" step="0.01">  
-                    </div>  
-                    <div class="form-field">  
-                        <label for="dividend">Dividend Received:</label>  
-                        <input type="number" id="dividend" name="dividend" placeholder="Dividend" step="0.01">  
-                    </div>  
-                    <div class="form-field">  
-                        <label for="investmentDate">Investment Date:</label>  
-                        <input type="date" id="investmentDate" name="investmentDate" placeholder="Date">  
-                    </div>  
+                <div class="form-field">  
+                    <label for="investmentAmount">Investment Amount:</label>  
+                    <input type="number" id="investmentAmount" name="investmentAmount" placeholder="Amount" step="0.01">  
+                </div>  
+                <div class="form-field">  
+                    <label for="tax">Tax:</label>  
+                    <input type="number" id="tax" name="tax" placeholder="Tax" step="0.01">  
+                </div>  
+                <div class="form-field">  
+                    <label for="serviceCharge">Service Charge:</label>  
+                    <input type="number" id="serviceCharge" name="serviceCharge" placeholder="Service Charge" step="0.01">  
+                </div>  
+                <div class="form-field">  
+                    <label for="dividend">Dividend:</label>  
+                    <input type="number" id="dividend" name="dividend" placeholder="Dividend" step="0.01">  
+                </div>  
+                <div class="form-field">  
+                    <label for="investmentDate">Investment Date:</label>  
+                    <input type="date" id="investmentDate" name="investmentDate" placeholder="Date">  
                 </div>  
                 <div class="form-field">  
                     <label for="investmentRemarks">Remarks:</label>  
                     <textarea id="investmentRemarks" name="investmentRemarks" placeholder="Remarks"></textarea>  
                 </div>  
-                <button type="submit" id="addInvestment">Add Investment</button>  
+                <!-- Formspree form -->  
+                <form  
+                  action="https://formspree.io/f/xdkkpwkk"  
+                  method="POST"  
+                >  
+                  <label>  
+                    Your email:  
+                    <input type="email" name="email">  
+                  </label>  
+                  <label>  
+                    Your message:  
+                    <textarea name="message"></textarea>  
+                  </label>  
+                  <button type="submit">Send</button>  
+                </form>  
+                <button type="button" id="addInvestment">Add Investment</button>  
             </form>  
         </div>  
         <div class="investment-list-container">  
