@@ -34,6 +34,8 @@ document.getElementById('investmentForm').addEventListener('submit', function(ev
         saveInvestmentToLocalStorage(investment);  
         // Reset the form  
         document.getElementById('investmentForm').reset();  
+        // Render the updated investments  
+        renderInvestments();  
     }).catch(error => {  
         console.error('Error adding investment:', error);  
     });  
@@ -44,7 +46,6 @@ function saveInvestmentToLocalStorage(investment) {
     investments.push(investment);  
     investments.sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort investments by date  
     localStorage.setItem('investments', JSON.stringify(investments));  
-    renderInvestments();  
 }  
 
 function renderInvestments() {  
@@ -65,4 +66,7 @@ function renderInvestments() {
         `;  
         investmentTable.appendChild(row);  
     });  
-}
+}  
+
+// Call the renderInvestments function when the page loads  
+window.addEventListener('load', renderInvestments);
