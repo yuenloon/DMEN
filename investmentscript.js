@@ -30,43 +30,26 @@ document.getElementById('investmentForm').addEventListener('submit', function(ev
         }  
     }).then(response => {  
         console.log('Investment added successfully!');  
-        // Save the investment data to local storage  
-        saveInvestmentToLocalStorage(investment);  
+        // Add the investment to the table  
+        addInvestmentToTable(investment);  
         // Reset the form  
         document.getElementById('investmentForm').reset();  
-        // Render the updated investments  
-        renderInvestments();  
     }).catch(error => {  
         console.error('Error adding investment:', error);  
     });  
 });  
 
-function saveInvestmentToLocalStorage(investment) {  
-    let investments = JSON.parse(localStorage.getItem('investments')) || [];  
-    investments.push(investment);  
-    investments.sort((a, b) => new Date(a.date) - new Date(b.date)); // Sort investments by date  
-    localStorage.setItem('investments', JSON.stringify(investments));  
-}  
-
-function renderInvestments() {  
+function addInvestmentToTable(investment) {  
     const investmentTable = document.getElementById('investmentTable').getElementsByTagName('tbody')[0];  
-    investmentTable.innerHTML = '';  
-
-    const investments = JSON.parse(localStorage.getItem('investments')) || [];  
-    investments.forEach(investment => {  
-        const row = document.createElement('tr');  
-        row.innerHTML = `  
-            <td>${investment.type}</td>  
-            <td>${investment.amount.toFixed(2)}</td>  
-            <td>${investment.tax.toFixed(2)}</td>  
-            <td>${investment.serviceCharge.toFixed(2)}</td>  
-            <td>${investment.dividend.toFixed(2)}</td>  
-            <td>${investment.date}</td>  
-            <td>${investment.remarks}</td>  
-        `;  
-        investmentTable.appendChild(row);  
-    });  
-}  
-
-// Call the renderInvestments function when the page loads  
-window.addEventListener('load', renderInvestments);
+    const row = document.createElement('tr');  
+    row.innerHTML = `  
+        <td>${investment.type}</td>  
+        <td>${investment.amount.toFixed(2)}</td>  
+        <td>${investment.tax.toFixed(2)}</td>  
+        <td>${investment.serviceCharge.toFixed(2)}</td>  
+        <td>${investment.dividend.toFixed(2)}</td>  
+        <td>${investment.date}</td>  
+        <td>${investment.remarks}</td>  
+    `;  
+    investmentTable.appendChild(row);  
+}
