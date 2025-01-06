@@ -1,0 +1,32 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Investment Tracker</title>  
+    <link rel="stylesheet" href="investmentstyles.css">  
+</head>  
+<body>  
+    <div class="container">  
+        <h1>Investment Tracker</h1>  
+        <div class="form-container">  
+            <h2>Add New Investment</h2>  
+            <form id="investmentForm" action="https://formspree.io/f/xdkkpwkk" method="POST">  
+                <input type="text" id="investmentType" name="investmentType" placeholder="Investment Type (e.g., Share, ASNB, PRS)" required>  
+                <input type="number" id="investmentAmount" name="investmentAmount" placeholder="Investment Amount" step="0.01" required>  
+                <input type="number" id="tax" name="tax" placeholder="Tax Amount" step="0.01" required>  
+                <input type="number" id="serviceCharge" name="serviceCharge" placeholder="Service Charge" step="0.01" required>  
+                <input type="number" id="dividend" name="dividend" placeholder="Dividend Received" step="0.01" required>  
+                <input type="date" id="investmentDate" name="investmentDate" placeholder="Date" required>  
+                <textarea id="investmentRemarks" name="investmentRemarks" placeholder="Remarks"></textarea>  
+                <button type="submit">Add Investment</button>  
+            </form>  
+        </div>  
+        <div class="investment-list-container">  
+            <h3>Your Investments</h3>  
+            <ul id="investmentList"></ul>  
+        </div>  
+    </div>  
+    <script src="investmentscript.js"></script>  
+</body>  
+</html>
