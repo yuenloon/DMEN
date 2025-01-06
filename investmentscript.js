@@ -1,14 +1,14 @@
-document.getElementById('investmentForm').addEventListener('submit', function (event) {  
+document.getElementById('addInvestment').addEventListener('click', function (event) {  
     event.preventDefault(); // Prevent the form from submitting normally  
 
-    // Get form values  
-    const investmentType = document.getElementById('investmentType').value;  
-    const investmentAmount = parseFloat(document.getElementById('investmentAmount').value);  
-    const tax = parseFloat(document.getElementById('tax').value);  
-    const serviceCharge = parseFloat(document.getElementById('serviceCharge').value);  
-    const dividend = parseFloat(document.getElementById('dividend').value);  
-    const investmentDate = document.getElementById('investmentDate').value;  
-    const investmentRemarks = document.getElementById('investmentRemarks').value;  
+    // Get form values (optional fields)  
+    const investmentType = document.getElementById('investmentType').value || 'Unknown';  
+    const investmentAmount = parseFloat(document.getElementById('investmentAmount').value) || 0;  
+    const tax = parseFloat(document.getElementById('tax').value) || 0;  
+    const serviceCharge = parseFloat(document.getElementById('serviceCharge').value) || 0;  
+    const dividend = parseFloat(document.getElementById('dividend').value) || 0;  
+    const investmentDate = document.getElementById('investmentDate').value || 'Unknown';  
+    const investmentRemarks = document.getElementById('investmentRemarks').value || 'No remarks';  
 
     // Create list item  
     const investmentList = document.getElementById('investmentList');  
