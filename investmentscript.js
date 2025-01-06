@@ -30,9 +30,30 @@ document.getElementById('investmentForm').addEventListener('submit', function(ev
         }  
     }).then(response => {  
         console.log('Investment added successfully!');  
+        // Save the investment data to local storage  
+        saveInvestmentToLocalStorage(investment);  
         // Reset the form  
         document.getElementById('investmentForm').reset();  
     }).catch(error => {  
         console.error('Error adding investment:', error);  
     });  
-});
+});  
+
+function saveInvestmentToLocalStorage(investment) {  
+    let investments = JSON.parse(localStorage.getItem('investments')) || [];  
+    investments.push(investment);  
+    localStorage.setItem('investments', JSON.stringify(investments));  
+    renderInvestments();  
+}  
+
+function renderInvestments() {  
+    const investmentList = document.getElementById('investmentList');  
+    investmentList.innerHTML = '';  
+
+    const investments = JSON.parse(localStorage.getItem('investments')) || [];  
+    investments.forEach(investment => {  
+        const listItem = document.createElement('li');  
+        listItem.textContent = `${investment.type} - Amount: ${investment.amount.toFixed(2)}, Tax: ${investment.tax.toFixed(2)}, Service Charge: ${investment.serviceCharge.toFixed(2)}, Dividend: ${investment.dividend.toFixed(2)}, Date: ${investment.date}, Remarks: ${investment.remarks}`;  
+        investmentList.appendChild(listItem);  
+    });  
+}
