@@ -34,7 +34,7 @@
                 </div>  
                 <div class="form-field">  
                     <label for="investmentDate">Investment Date:</label>  
-                    <input type="date" id="investmentDate" name="investmentDate" placeholder="Date">  
+                    <input type="date" id="investmentDate" name="investmentDate" placeholder="Date" required>  
                 </div>  
                 <div class="form-field">  
                     <label for="investmentRemarks">Remarks:</label>  
@@ -45,7 +45,20 @@
         </div>  
         <div class="investment-list-container">  
             <h3>Your Investments</h3>  
-            <ul id="investmentList"></ul>  
+            <table id="investmentTable">  
+                <thead>  
+                    <tr>  
+                        <th>Type</th>  
+                        <th>Amount</th>  
+                        <th>Tax</th>  
+                        <th>Service Charge</th>  
+                        <th>Dividend</th>  
+                        <th>Date</th>  
+                        <th>Remarks</th>  
+                    </tr>  
+                </thead>  
+                <tbody></tbody>  
+            </table>  
         </div>  
     </div>  
     <script src="investmentscript.js"></script>  
