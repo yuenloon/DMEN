@@ -30,7 +30,7 @@ body {
 }  
 
 .form-field:last-child {  
-    margin-right: 20px;  
+    margin-right: 0;  
 }  
 
 input, textarea {  
