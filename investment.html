@@ -1,52 +1,52 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Investment Tracker</title>  
-    <link rel="stylesheet" href="investmentstyles.css"> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Tracker</title>
+    <link rel="stylesheet" href="investmentstyles.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/supabase.js"></script>
-</head>  
-<body>  
-    <div class="container">  
-        <h1>Investment Tracker</h1>  
-        <div class="form-container">  
-            <h2>Add New Investment</h2>  
-            <form id="investmentForm" action="https://formspree.io/f/xdkkpwkk" method="POST">  
-                <div class="form-row">  
-                    <div class="form-field">  
-                        <label for="investmentType">Investment Type:</label>  
-                        <input type="text" id="investmentType" name="investmentType" placeholder="Investment Type" required>  
-                    </div>  
-                    <div class="form-field">  
-                        <label for="investmentAmount">Investment Amount:</label>  
-                        <input type="number" id="investmentAmount" name="investmentAmount" placeholder="Amount" step="0.01">  
-                    </div>  
-                </div>  
-                <div class="form-row">  
-                    <div class="form-field">  
-                        <label for="tax">Tax:</label>  
-                        <input type="number" id="tax" name="tax" placeholder="Tax" step="0.01">  
-                    </div>  
-                    <div class="form-field">  
-                        <label for="serviceCharge">Service Charge:</label>  
-                        <input type="number" id="serviceCharge" name="serviceCharge" placeholder="Service Charge" step="0.01">  
-                    </div>  
-                </div>  
-                <div class="form-row">  
-                    <div class="form-field">  
-                        <label for="dividend">Dividend:</label>  
-                        <input type="number" id="dividend" name="dividend" placeholder="Dividend" step="0.01">  
-                    </div>  
-                    <div class="form-field">  
-                        <label for="investmentDate">Investment Date:</label>  
-                        <input type="date" id="investmentDate" name="investmentDate" placeholder="Date" required>  
-                    </div>  
-                </div>  
-                <button type="submit">Add Investment</button>  
-            </form>  
-        </div>  
-    </div>  
-     <script src="investmentscript.js"></script>  
-</body>  
+</head>
+<body>
+    <div class="container">
+        <h1>Investment Tracker</h1>
+        <div class="form-container">
+            <h2>Add New Investment</h2>
+            <form id="investmentForm" action="https://formspree.io/f/xdkkpwkk" method="POST">
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="investmentType">Investment Type:</label>
+                        <input type="text" id="investmentType" name="investmentType" placeholder="Investment Type" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="investmentAmount">Investment Amount:</label>
+                        <input type="number" id="investmentAmount" name="investmentAmount" placeholder="Amount" step="0.01">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="tax">Tax:</label>
+                        <input type="number" id="tax" name="tax" placeholder="Tax" step="0.01">
+                    </div>
+                    <div class="form-field">
+                        <label for="serviceCharge">Service Charge:</label>
+                        <input type="number" id="serviceCharge" name="serviceCharge" placeholder="Service Charge" step="0.01">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="dividend">Dividend:</label>
+                        <input type="number" id="dividend" name="dividend" placeholder="Dividend" step="0.01">
+                    </div>
+                    <div class="form-field">
+                        <label for="investmentDate">Investment Date:</label>
+                        <input type="date" id="investmentDate" name="investmentDate" placeholder="Date" required>
+                    </div>
+                </div>
+                <button type="submit">Add Investment</button>
+            </form>
+        </div>
+    </div>
+    <script src="investmentscript.js"></script>
+</body>
 </html>
