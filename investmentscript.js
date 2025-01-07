@@ -1,15 +1,14 @@
-// Wait until the Supabase SDK script has loaded
-const supabaseScript = document.getElementById('supabase-script');
-
-supabaseScript.onload = function () {
-    // Now the Supabase SDK is loaded, initialize the Supabase client
+function waitForSupabase() {
+    // Check if Supabase is loaded
     if (typeof window.supabase !== 'undefined') {
+        // Initialize Supabase client
         const supabaseUrl = 'https://fhawjjmjijeqfqoycbkw.supabase.co';
-        const supabaseKey = 'your-supabase-key';  // Be careful with exposing your API keys
+        const supabaseKey = 'your-supabase-key'; // Replace with your Supabase key
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         console.log('Supabase client initialized:', supabase);
 
+        // Form submission event listener
         document.getElementById('investmentForm').addEventListener('submit', async function (event) {
             event.preventDefault(); // Prevent the form from submitting normally
 
@@ -62,6 +61,12 @@ supabaseScript.onload = function () {
             }
         });
     } else {
-        console.error('Supabase client not found. Ensure the Supabase script is loaded.');
+        // If Supabase is not ready yet, try again in 100ms
+        setTimeout(waitForSupabase, 100);
     }
+}
+
+// Start checking for Supabase when the page is loaded
+window.onload = function () {
+    waitForSupabase();
 };
