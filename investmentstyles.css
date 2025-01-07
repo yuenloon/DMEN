@@ -9,7 +9,7 @@ body {
     max-width: 600px;  
     margin: auto;  
     background: white;  
-    padding: 100px; /* Increased the padding from 20px to 40px */  
+    padding: 160px; /* Increased the padding from 20px to 40px */  
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  
     border-radius: 5px;  
 }  
