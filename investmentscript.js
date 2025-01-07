@@ -8,7 +8,6 @@ document.getElementById('investmentForm').addEventListener('submit', function(ev
     const serviceCharge = parseFloat(document.getElementById('serviceCharge').value);  
     const dividend = parseFloat(document.getElementById('dividend').value);  
     const investmentDate = document.getElementById('investmentDate').value;  
-    const investmentRemarks = document.getElementById('investmentRemarks').value;  
 
     // Create investment object  
     const investment = {  
@@ -17,8 +16,7 @@ document.getElementById('investmentForm').addEventListener('submit', function(ev
         tax: tax,  
         serviceCharge: serviceCharge,  
         dividend: dividend,  
-        date: investmentDate,  
-        remarks: investmentRemarks  
+        date: investmentDate  
     };  
 
     // Send the investment data to Formspree  
