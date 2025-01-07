@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investment Tracker</title>
     <link rel="stylesheet" href="investmentstyles.css">
-    <!-- Load Supabase SDK before your custom script -->
+    
+    <!-- Load Supabase SDK with defer to make sure it loads before the custom script -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/supabase.js" defer></script>
 </head>
 <body>
@@ -49,7 +50,7 @@
         </div>
     </div>
 
-    <!-- Load your custom JS script after Supabase is loaded -->
+    <!-- Load your custom JS script, which will depend on the Supabase library -->
     <script src="investmentscript.js" defer></script>
 </body>
 </html>
