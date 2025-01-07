@@ -30,26 +30,9 @@ document.getElementById('investmentForm').addEventListener('submit', function(ev
         }  
     }).then(response => {  
         console.log('Investment added successfully!');  
-        // Add the investment to the table  
-        addInvestmentToTable(investment);  
         // Reset the form  
         document.getElementById('investmentForm').reset();  
     }).catch(error => {  
         console.error('Error adding investment:', error);  
     });  
-});  
-
-function addInvestmentToTable(investment) {  
-    const investmentTable = document.getElementById('investmentTable').getElementsByTagName('tbody')[0];  
-    const row = document.createElement('tr');  
-    row.innerHTML = `  
-        <td>${investment.type}</td>  
-        <td>${investment.amount.toFixed(2)}</td>  
-        <td>${investment.tax.toFixed(2)}</td>  
-        <td>${investment.serviceCharge.toFixed(2)}</td>  
-        <td>${investment.dividend.toFixed(2)}</td>  
-        <td>${investment.date}</td>  
-        <td>${investment.remarks}</td>  
-    `;  
-    investmentTable.appendChild(row);  
-}
+});
