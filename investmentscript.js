@@ -1,7 +1,8 @@
 // Initialize Supabase client  
 const supabaseUrl = 'https://fhawjjmjijeqfqoycbkw.supabase.co';  
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZoYXdqam1qaWplcWZxb3ljYmt3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYxNDI2NjksImV4cCI6MjA1MTcxODY2OX0.jPqFRNkRgNM7jYHByfq4ihNfdr6vKlYDjr-77T-p-20';  
-const supabase = await Supabase.createClient(supabaseUrl, supabaseKey); 
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
 
 console.log('Supabase client initialized:', supabase);  
 
