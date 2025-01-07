@@ -9,26 +9,37 @@ function showStatus(message, isError = false) {
     statusDiv.style.backgroundColor = isError ? '#ffebee' : '#e8f5e9';
     statusDiv.style.color = isError ? '#c62828' : '#2e7d32';
     statusDiv.textContent = message;
-    
-    // Hide the message after 5 seconds
-    setTimeout(() => {
-        statusDiv.style.display = 'none';
-    }, 5000);
+    console.log(`Status Message: ${message}`); // Debug log
 }
 
 // Initialize Supabase client
 let supabase = null;
 try {
     supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    console.log('Supabase initialized successfully');
+    console.log('Supabase client created:', supabase); // Debug log
+    
+    // Test the connection immediately
+    supabase
+        .from('investments')
+        .select('count')
+        .limit(1)
+        .then(({ data, error }) => {
+            if (error) {
+                console.error('Supabase connection test error:', error); // Debug log
+                showStatus('Database connection test failed: ' + error.message, true);
+            } else {
+                console.log('Supabase connection test successful. Data:', data); // Debug log
+            }
+        });
 } catch (error) {
     console.error('Failed to initialize Supabase:', error);
-    showStatus('Failed to initialize database connection', true);
+    showStatus('Failed to initialize database connection: ' + error.message, true);
 }
 
 // Form submission handler
 document.getElementById('investmentForm').addEventListener('submit', async function(event) {
     event.preventDefault();
+    console.log('Form submission started'); // Debug log
     
     if (!supabase) {
         showStatus('Database connection not initialized', true);
@@ -46,78 +57,78 @@ document.getElementById('investmentForm').addEventListener('submit', async funct
         created_at: new Date().toISOString()
     };
 
-    // Validate numbers
-    const numberFields = ['amount', 'tax', 'service_charge', 'dividend'];
-    for (const field of numberFields) {
-        if (isNaN(investment[field])) {
-            showStatus(`Invalid value for ${field}`, true);
-            return;
-        }
-    }
+    console.log('Investment data to be sent:', investment); // Debug log
 
     try {
-        // Show loading status
         showStatus('Adding investment...');
         
-        // Send to Formspree
-        try {
-            const formspreeResponse = await fetch(this.action, {
-                method: this.method,
-                body: new URLSearchParams(investment).toString(),
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
-            
-            if (!formspreeResponse.ok) {
-                throw new Error('Formspree submission failed');
-            }
-        } catch (error) {
-            console.error('Formspree error:', error);
-            // Continue with Supabase even if Formspree fails
-        }
-
-        // Send to Supabase
+        // Log the actual request to Supabase
+        console.log('Sending request to Supabase...'); // Debug log
+        
         const { data, error } = await supabase
             .from('investments')
-            .insert([investment]);
+            .insert([investment])
+            .select(); // Add .select() to get back the inserted data
+
+        console.log('Supabase response received:', { data, error }); // Debug log
 
         if (error) {
+            console.error('Supabase error details:', error); // Debug log
             throw error;
         }
 
-        // Success
+        console.log('Investment added successfully:', data); // Debug log
         showStatus('Investment added successfully!');
         this.reset();
-        
-        // Log success details
-        console.log('Investment added:', {
-            formData: investment,
-            supabaseResponse: data
-        });
 
     } catch (error) {
-        console.error('Error details:', error);
+        console.error('Detailed error:', {
+            message: error.message,
+            details: error.details,
+            hint: error.hint,
+            code: error.code
+        }); // Debug log
         showStatus(`Error: ${error.message || 'Failed to add investment'}`, true);
     }
 });
 
-// Add this to verify Supabase is working
+// Test table access on page load
 window.addEventListener('load', async () => {
+    console.log('Page loaded, testing table access...'); // Debug log
     if (supabase) {
         try {
+            // Try to insert a test record
+            const testData = {
+                type: 'TEST',
+                amount: 0,
+                tax: 0,
+                service_charge: 0,
+                dividend: 0,
+                date: new Date().toISOString().split('T')[0],
+                created_at: new Date().toISOString()
+            };
+            
+            console.log('Attempting test insert with data:', testData); // Debug log
+            
             const { data, error } = await supabase
                 .from('investments')
-                .select('count')
-                .limit(1);
-                
+                .insert([testData])
+                .select();
+
             if (error) {
-                throw error;
+                console.error('Test insert failed:', error); // Debug log
+                showStatus('Database test failed. Error: ' + error.message, true);
+            } else {
+                console.log('Test insert successful:', data); // Debug log
+                // Clean up test data
+                await supabase
+                    .from('investments')
+                    .delete()
+                    .match({ type: 'TEST' });
             }
-            console.log('Supabase connection test successful');
         } catch (error) {
-            console.error('Supabase connection test failed:', error);
-            showStatus('Database connection test failed. Please check your configuration.', true);
+            console.error('Database test failed:', error);
+            showStatus('Database test failed: ' + error.message, true);
         }
     }
 });
