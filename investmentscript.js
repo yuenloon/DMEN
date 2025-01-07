@@ -1,5 +1,5 @@
 // Initialize Supabase client
-const supabaseUrl = 'https://fhawjjmjijeqfqoycbkw.supabase.co';  
+const supabaseUrl = 'https://fhawjjmjijeqfqoycbkw.supabase.co';
 const supabaseKey = 'your-supabase-key';  // Be careful not to expose sensitive keys in production
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
