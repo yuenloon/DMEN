@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investment Tracker</title>
     <link rel="stylesheet" href="investmentstyles.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/supabase.js"></script>
+    <!-- Make sure Supabase script is loaded first -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/supabase.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -47,6 +48,7 @@
             </form>
         </div>
     </div>
-    <script src="investmentscript.js"></script>
+    <!-- Now the investmentscript.js is loaded last and it depends on Supabase being loaded first -->
+    <script src="investmentscript.js" defer></script>
 </body>
 </html>
